@@ -6,7 +6,7 @@ int main() {
   std::srand(std::time(0));
 
   try {
-    NeuralNetwork::MLP p(4);
+    NeuralNetwork::MLP p(5);
 
     std::vector< std::pair< std::vector<double>, std::vector<double> > > trainingData_xor = {
       { { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }, { 0.0, 0.0, 0.0 } },
@@ -20,9 +20,10 @@ int main() {
       p.addNeuron(0);
       p.addNeuron(1);
       p.addNeuron(2);
+      p.addNeuron(3);
     }
     for (int i = trainingData_xor[0].second.size(); i > 0; --i) {
-      p.addNeuron(3);
+      p.addNeuron(4);
     }
   
     for (int i = 0; i < 1000; ++i) {
