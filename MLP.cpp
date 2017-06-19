@@ -56,7 +56,9 @@ void NeuralNetwork::MLP::process(const std::vector<double>& input, vector<double
     throw ArgumentException();
     return;
   }
-  for (int iI = 1, iLI = m_activation[0].size(); iI < iLI; ++iI) m_activation[0][iI] = input[iI-1];
+  for (unsigned int neuronIn = 1, neuronInMax = m_activation[0].size();
+       neuronIn < neuronInMax; ++neuronIn)
+    m_activation[0][neuronIn] = input[neuronIn-1];
 
 
   for (unsigned int layer = 1, layerMax = m_activation.size(); layer < layerMax; ++layer) {
@@ -72,7 +74,8 @@ void NeuralNetwork::MLP::process(const std::vector<double>& input, vector<double
       m_activation[layer][neuronOut] = 1.0 / (1.0 + std::exp(-m_sum[layer][neuronOut]));
     }
   }
-  for (int oI = 1, oLI = m_activation[outputLayer].size(); oI < oLI; ++oI) output[oI-1] = m_activation[outputLayer][oI];
+  for (int neuronOut = 1, neuronOutMax = m_activation[outputLayer].size();
+       neuronOut < neuronOutMax; ++neuronOut) output[neuronOut-1] = m_activation[outputLayer][neuronOut];
   return;
 }
 
