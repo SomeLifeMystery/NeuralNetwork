@@ -26,14 +26,16 @@ namespace NeuralNetwork {
 		 const vector<double>& target);
     void save(const string& fileName);
     void load(const string& fileName);
-  private:
+    
+  protected:
     vector< vector<double> > m_activation;//[layer][neuron[layer]]
     vector< vector< vector<double> > > m_weights;//[layer][neuron[layer]][neuron[layer+1]]
     vector< vector< vector<double> > > m_deltaWeights;//[layer][neuron[layer]][neuron[layer+1]]
     vector< vector<double> > m_sum;//[layer][neuron[layer]]
     vector< vector<double> > m_delta;//[layer][neuron[layer]]
     vector< vector<double> > m_sumDeltaWeights;//[layer][neuron[layer]]
-
+    
+  private:
     class ConstructionException : public std::exception {
       const char* what() const throw() {
 	return "Error: MLP must have at least two layers.";
